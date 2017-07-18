@@ -7,8 +7,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
     ANDROID_SDK_URL="https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip" \
     ANDROID_BUILD_TOOLS_VERSION=25.0.3 \
     ANDROID_PLATFORM_APIS="android-25" \
-    NODEJS_VERSION=6.10.3 \
-    NPM_VERSION=5.0.1 \
+    NODEJS_VERSION=6.11.1 \
+    NPM_VERSION=5.3 \
     CORDOVA_VERSION=7.0.1 \
     JAVA_HOME="/usr/lib/jvm/java-8-oracle" \
     ANT_HOME="/usr/share/ant" \
@@ -53,7 +53,7 @@ RUN cd /opt && \
     mkdir node && \
     cd /opt/node && \
     curl -sL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz | tar xz --strip-components=1 && \
-    
+
     # clean up
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     apt-get purge -y --auto-remove $buildDeps && \
@@ -62,3 +62,5 @@ RUN cd /opt && \
 
     # Installs Cordova
     npm i -g --unsafe-perm npm@${NPM_VERSION} cordova@${CORDOVA_VERSION}
+
+RUN apt-get -qq install -y git
