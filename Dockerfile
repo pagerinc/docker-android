@@ -63,4 +63,5 @@ RUN cd /opt && \
     # Installs Cordova
     npm i -g --unsafe-perm npm@${NPM_VERSION} cordova@${CORDOVA_VERSION}
 
-RUN apt-get -qq install -y git
+RUN apt-get -qq update && \
+    apt-get -qq install -y git
